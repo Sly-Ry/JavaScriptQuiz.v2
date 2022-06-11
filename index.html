@@ -26,7 +26,7 @@
             <div class="col-6">
 
                 <!-- <a href="">View Highscores</a> -->
-                <button id="view-scores" type="button" class="btn btn-secondary d-inline-block mt-1"> View High Score</button>
+                <button id="view-scores" type="button" class="btn btn-secondary d-inline-block mt-1"> High Score</button>
             </div>
             
             <!-- Timer -->
@@ -54,7 +54,7 @@
                         <p class="d-flex justify-content-center text-center">Try to answer the following JavaScript code questions within the time limit. Incorrect answers will penalize your time/score by 2 seconds! Good luck!</p>
 
                         <!-- start button -->
-                        <button id="start" type="button" class="btn btn-success mx-auto d-block">Start Quiz</button>
+                        <button id="start" type="button" class="btn btn-success mx-auto d-block">Begin</button>
 
                     </div>
                 </div>
@@ -71,7 +71,7 @@
 
                         <!-- current answers -->
                         <ul class="px-0 py-0 nobullets">
-                            <li><button id="answer1" value="0" type="button" class="btn btn-success ansBtn">Answer1</button></li>
+                            <li><button id="answer1" value="0" type="button" class="btn btn-success ansBtn">answer1</button></li>
                             <li><button id="answer2" value="1" type="button" class="btn btn-success ansBtn">answer2</button></li>
                             <li><button id="answer3" value="2" type="button" class="btn btn-success ansBtn">answer3</button></li>
                             <li><button id="answer4" value="3" type="button" class="btn btn-success ansBtn">answer4</button></li>
@@ -87,10 +87,44 @@
             </section>
 
             <!-- Quiz Results; final score and name -->
-            
+            <section id="final">
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-6">
+                        <h2>Game Over</h2>
 
+                        <!-- final Score display -->
+                        <p>Score: <span id="score" class="pl-1">0</span></p>
+                        <!-- <p class="score">Final score: </p> -->
+
+                        <!-- initial's Input -->
+                        <p>Initials: <span class="mt-1"><input placeholder="" id="intials" /></span>
+                            <button id="submit-score" class="btn btn-secondary mx-1 my-1 d-inline-block">Enter</button>
+                        </p>
+                    </div>
+                </div>
+            </section>
 
             <!-- Highscores -->
+            <section id="highscores">
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-6">
+                        <h2>High Scores</h2>
+
+                        <!-- list for high scores -->
+                        <ol id="scores-list">
+                            <li></li>
+                        </ol>
+
+                        <!-- return button -->
+                        <button id="back" class="btn btn-secondary mx-1 my-1 d-inline-block ">Back</button>
+
+                        <!-- clear scores button -->
+                        <button id="reset" class="btn btn-secondary mx-1 my-1 d-inline-block">Reset</button>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
 
@@ -98,5 +132,16 @@
     <footer></footer>
 
     <!-- JavaScript -->
+    <!-- basic JS script -->
+    <script src="./assets/index.js"></script>
+    
+    <!-- JQuery script -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    
+    <!-- popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    
+    <!-- bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 </html>
