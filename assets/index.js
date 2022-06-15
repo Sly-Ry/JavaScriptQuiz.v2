@@ -90,11 +90,91 @@ function setTime() {
         timeEl.textContent = `Time: ${secondsLeft}s`
 
         if (secondsLeft === 0 || questionCount === questions.length) {
-            clearInterval.style.display = 'none';
+            clearInterval(timerInterval)
+            questionsEl.style.display = 'none';
             finalEl.style.display = 'block';
             scoreEl.style.display = 'secondsLeft;'
         }
     }, 1000)
+}
+
+// start quiz with timer and set up questions
+function startQuiz() {
+    introEl.style.display = 'none';
+    questionsEl.style.display = 'block';
+    questionCount = 0;
+
+    setTime();
+    setQuestion(questionCount);
+};
+
+// function to set question; takes in a count and displays the next question/answers
+function setQuestion(id) {
+    if (id < questions.length) {
+        questionEl.textContent = questions[id].question
+        ansBtn1.textContent = questions[id].answers[0];
+        ansBtn2.textContent = questions[id].answers[1];
+        ansBtn3.textContent = questions[id].answers[2];
+        ansBtn4.textContent = questions[id].answers[3];
+    }
+}
+
+// function to check answer and move to next question
+function checkAnswer(event) {
+    event.preventDefault();
+
+    // show section for yaynay and append message
+    yaynayEl.style.display = 'block';
+    let p = document.createElement('p');
+    yaynayEl.appendChild(p);
+
+    // time out after 1 second
+    setTimeout(function() {
+        p.style.display = 'none';
+    }, 1000);
+
+    // answer checker
+    if (questions[questionCount].correctAnswer === event.target.value) {
+        p.textContent = 'Correct!'
+    }
+    else if (questions[questionCount].correctAnswer !== event.target.value) {
+        secondsLeft = secondsLeft - 1;
+        p.textContent = 'Incorrect!'
+    }
+
+    // increment so the questions index increases
+    if (questionCount < questions.length) {
+        questionCount++;
+    }
+
+    // call setquestion to get next question when ansBtn is clicked
+    setQuestion(questionCount);
+}
+
+function addScore(event) {
+    event.preventDefault();
+
+    finalEl.style.display = 'none';
+    highscoresEl.style.display = 'block';
+
+    let init = initialsInput.value.toUpperCase();
+    scoreList.push({ initials: init, score: secondsLeft });
+
+    // sort scores
+    scoreList = scoreList.sort((a, b) => {
+        if (a.score < b.score){
+            return 1;
+        } else {
+            return -1;
+        }
+    });
+
+    scoresListEl.innerHTML = '';
+    for (let i = 0; i < scoreList.length; i++) {
+        let li = document.createElement('li');
+        li.textContent = `${scoreList[i].initials}: ${scoreList[i].score}`;
+        scoresListEl.append(li);
+    }
 }
 
 // Event listeners
