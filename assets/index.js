@@ -40,11 +40,61 @@ const scoreList = [];
 
 
 // buttons
+const startBtn = document.querySelector('#start');
+
+const ansBtn1 = document.querySelector('#answer1');
+
+const ansBtn2 = document.querySelector('#answer2');
+
+const ansBtn3 = document.querySelector('#answer3');
+
+const ansBtn4 = document.querySelector('#answer4');
+
+const submitScrBtn = document.querySelector('#submit-score');
+
+const backBtn = document.querySelector('#back');
+
+const resetBtn = document.querySelector('#reset');
+
+const viewScrBtn = document.querySelector('#view-scores');
 
 // questions
-
+const questions = [
+    {
+        // index 0
+        question: 'A question?',
+        answers: ['1. yes', '2. No?'],
+        correctAnswer: '1'
+    },
+    {
+        // index 0
+        question: 'A question!',
+        answers: ['1. yes', '2. No?'],
+        correctAnswer: '2'
+    },
+    {
+        // index 0
+        question: 'duh???',
+        answers: ['1. yes', '2. No?'],
+        correctAnswer: '1'
+    },
+];
 
 
 // Functions
+
+// timer
+function setTime() {
+    let timerInterval = setInterval(function() {
+        secondsLeft--;
+        timeEl.textContent = `Time: ${secondsLeft}s`
+
+        if (secondsLeft === 0 || questionCount === questions.length) {
+            clearInterval.style.display = 'none';
+            finalEl.style.display = 'block';
+            scoreEl.style.display = 'secondsLeft;'
+        }
+    }, 1000)
+}
 
 // Event listeners
