@@ -1,0 +1,69 @@
+* {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+html, body {
+    height: 100%
+}
+
+body {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    /* css so footer is at bottom of viewport */
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    /* css so footer is at bottom of viewport */
+    flex: 1 0 auto;
+}
+
+/* hide sections until they are shown via the click events */
+#questions,
+#final,
+#highscores,
+#yaynay {
+    display: none;  
+}
+
+ul.nobullets {
+    list-style-type: none;
+}
+
+/* answer button styling */
+.ansBtn,
+.ansBtn:hover,
+.ansBtn:active,
+.ansBtn:focus,
+.ansBtn:active:focus {
+    box-shadow: none;
+    outline: none;
+    background-color: rgb(104, 104, 104);
+}
+
+/* Media queries for background image from https://web.dev/optimize-css-background-images-with-media-queries/ */ */
+
+/* Mobile
+@media (max-width: 480px) {
+    body {
+        background-color: lightblue;
+    }
+}
+
+/* Tablet */
+/* @media (min-width: 481px) and (max-width: 1024px) {
+    body {
+        background-image: url(../assets/images/markus-spiske-da7AMukpg2k-unsplash-med.jpg);
+    }
+} */
+
+/* Desktop */
+/* @media (min-width: 1025px) {
+    body {
+	    background-image: url(../assets/images/markus-spiske-da7AMukpg2k-unsplash-med.jpg);
+   }
+} */
