@@ -1,7 +1,7 @@
 // Variables for page elements
 // time and score
 let timeEl = document.querySelector('p.time');
-let secondsLeft = 10;
+let secondsLeft = 60;
 let scoreEl = document.querySelector('#score');
 
 // sections
@@ -26,17 +26,17 @@ const yaynayEl = document.querySelector('#yaynay');
 const finalEl = document.querySelector('#final');
 
 // user initials
-const initialsInput = document.querySelector('#initials');
+let initialsInput = document.querySelector('#initials');
 
 
 // highscore section
 const highscoresEl = document.querySelector('#highscores');
 
 // scores list
-const scoresListEl = document.querySelector('#scores-list');
+let scoreListEl = document.querySelector('#score-list');
 
 // array of scores
-const scoreList = [];
+let scoreList = [];
 
 
 // buttons
@@ -64,22 +64,92 @@ const viewScrBtn = document.querySelector('#view-scores');
 const questions = [
     {
         // index 0
-        question: 'A question?',
-        answers: ['1. yes', '2. No?'],
+        question: 'What is JavaScript?',
+        answers: [
+            '1. a client-side and server-side scripting language inserted into HTML pages and is understood by web browsers',
+            '2. A really cool starbucks drink',
+            '3. Not an Object-based Programming language.',
+            '4. The first programming language used to guide rockets in space.'
+        ],
+        correctAnswer: '0'
+    },
+    {
+        // index 1
+        question: 'Which is a JavaScript Data Type?',
+        answers: [
+            '1. Method', 
+            '2. String',
+            '3. Database',
+            '4. Null'
+        ],
         correctAnswer: '1'
     },
     {
-        // index 0
-        question: 'A question!',
-        answers: ['1. yes', '2. No?'],
+        // index 2
+        question: 'What is Negative Infinity?',
+        answers: [ 
+            '1. A number in which cannot be derived by dividing a negative number by zero.', 
+            '2. A number in which can be derived by mulitplying a negative number by zero.',
+            '3. A number in which can be derived by dividing a negative number by zero.',
+            '4. A non existant integer.'
+        ],
         correctAnswer: '2'
     },
     {
-        // index 0
-        question: 'duh???',
-        answers: ['1. yes', '2. No?'],
-        correctAnswer: '1'
+        // question 0
+        question: "Commonly used data types do NOT include:",
+        answers: [
+            "1. strings", 
+            "2. booleans", 
+            "3. alerts", 
+            "4. numbers"
+        ],
+        correctAnswer: "1"
     },
+    {
+        // question 1
+        question: "The condition in an if / else statement is enclosed within ____.",
+        answers: [
+            "1. quotes", 
+            "2. curly brackets", 
+            "3. parentheses", 
+            "4. square brackets"
+        ],
+        correctAnswer: "2"
+    },
+    {
+        // question 2
+        question: "Arrays in Javascript can be used to store ____.",
+        answers: [
+            "1. numbers and strings", 
+            "2. other arrays", 
+            "3. booleans", 
+            "4. all of the above"
+        ],
+        correctAnswer: "2"
+    },
+    {
+        // question 3
+        question: "String values must be enclosed within ____ when being assigned to variables.",
+        answers: [
+            "1. commmas", 
+            "2. curly brackets", 
+            "3. quotes", 
+            "4. parentheses"
+        ],
+        correctAnswer: "1"
+    },
+    {
+        // question 4
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        answers: [
+            "1. Javascript", 
+            "2. terminal/bash", 
+            "3. for loops", 
+            "4. console.log"
+        ],
+        correctAnswer: "2"
+    }
 ];
 
 
@@ -138,9 +208,10 @@ function checkAnswer(event) {
     // answer checker
     if (questions[questionCount].correctAnswer === event.target.value) {
         p.textContent = 'Correct!'
+        secondsLeft = secondsLeft + 5;
     }
     else if (questions[questionCount].correctAnswer !== event.target.value) {
-        secondsLeft = secondsLeft - 1;
+        secondsLeft = secondsLeft - 10;
         p.textContent = 'Incorrect!'
     }
 
@@ -171,12 +242,15 @@ function addScore(event) {
         }
     });
 
-    scoresListEl.innerHTML = '';
+    scoreListEl.innerHTML = '';
     for (let i = 0; i < scoreList.length; i++) {
         let li = document.createElement('li');
         li.textContent = `${scoreList[i].initials}: ${scoreList[i].score}`;
-        scoresListEl.append(li);
+        scoreListEl.append(li);
     }
+
+    storeScores();
+    displayScores();
 }
 
 function storeScores() {
@@ -196,7 +270,7 @@ function displayScores() {
 
 function clearScores() {
     localStorage.clear();
-    scoresListEl.innerHTML = '';
+    scoreListEl.innerHTML = '';
 }
 
 
@@ -217,7 +291,7 @@ submitScrBtn.addEventListener('click', addScore);
 backBtn.addEventListener('click', function() {
     highscoresEl.style.display = 'none';
     introEl.style.display = 'block';
-    secondsLeft = 10;
+    secondsLeft = 60;
     timeEl.textContent = `Time: ${secondsLeft}s`;
 });
 
