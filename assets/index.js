@@ -104,7 +104,7 @@ const questions = [
             "3. alerts", 
             "4. numbers"
         ],
-        correctAnswer: "1"
+        correctAnswer: "2"
     },
     {
         // question 1
@@ -115,7 +115,7 @@ const questions = [
             "3. parentheses", 
             "4. square brackets"
         ],
-        correctAnswer: "2"
+        correctAnswer: "1"
     },
     {
         // question 2
@@ -126,7 +126,7 @@ const questions = [
             "3. booleans", 
             "4. all of the above"
         ],
-        correctAnswer: "2"
+        correctAnswer: "3"
     },
     {
         // question 3
@@ -137,18 +137,19 @@ const questions = [
             "3. quotes", 
             "4. parentheses"
         ],
-        correctAnswer: "1"
+        correctAnswer: "2"
     },
     {
         // question 4
         question: "A very useful tool used during development and debugging for printing content to the debugger is:",
         answers: [
-            "1. Javascript", 
-            "2. terminal/bash", 
-            "3. for loops", 
-            "4. console.log"
+            "1. console.log",
+            "2. Javascript", 
+            "3. terminal/bash", 
+            "4. for loops", 
+            
         ],
-        correctAnswer: "2"
+        correctAnswer: "0"
     }
 ];
 
@@ -162,13 +163,18 @@ function setTime() {
         timeEl.textContent = `Time: ${secondsLeft}s`
 
         if (secondsLeft === 0 || questionCount === questions.length) {
-            secondsLeft = 0; 
             clearInterval(timerInterval)
             questionsEl.style.display = 'none';
             finalEl.style.display = 'block';
-            scoreEl.style.display = 'secondsLeft;'
+            scoreEl.style.display = 'secondsLeft';
         }
-    }, 100)
+        
+        if (secondsLeft < 0) {
+            secondsLeft = 0
+            timeEl.textContent = 'Time: 0';
+        }
+
+    }, 1000)
 }
 
 // start quiz with timer and set up questions
