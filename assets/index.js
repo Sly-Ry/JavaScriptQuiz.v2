@@ -209,7 +209,6 @@ function checkAnswer(event) {
     // answer checker
     if (questions[questionCount].correctAnswer === event.target.value) {
         p.textContent = 'Correct!'
-        secondsLeft = secondsLeft + 5;
     }
     else if (questions[questionCount].correctAnswer !== event.target.value) {
         secondsLeft = secondsLeft - 10;
@@ -271,6 +270,7 @@ function displayScores() {
 
 function clearScores() {
     localStorage.clear();
+    console.log(localStorage)
     scoreListEl.innerHTML = '';
 }
 
