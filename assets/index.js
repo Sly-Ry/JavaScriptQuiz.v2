@@ -1,8 +1,8 @@
 // Variables for page elements
 // time and score
-const timeEl = document.querySelector('p.time');
-const secondsLeft = 5;
-const scoreEl = document.querySelector('#score');
+let timeEl = document.querySelector('p.time');
+let secondsLeft = 10;
+let scoreEl = document.querySelector('#score');
 
 // sections
 // intro section
@@ -13,10 +13,10 @@ const introEl = document.querySelector('#intro');
 const questionsEl = document.querySelector('#questions');
 
 // questions container
-const questionEl = document.querySelector('#question');
+let questionEl = document.querySelector('#question');
 
 // questions answered count
-const questionCount = 0;
+let questionCount = 0;
 
 // results div
 const yaynayEl = document.querySelector('#yaynay');
@@ -33,7 +33,7 @@ const initialsInput = document.querySelector('#initials');
 const highscoresEl = document.querySelector('#highscores');
 
 // scores list
-const scoresListEl = document/querySelector('#scores-list');
+const scoresListEl = document.querySelector('#scores-list');
 
 // array of scores
 const scoreList = [];
@@ -41,6 +41,8 @@ const scoreList = [];
 
 // buttons
 const startBtn = document.querySelector('#start');
+
+const ansBtn = document.querySelectorAll('button.ansBtn')
 
 const ansBtn1 = document.querySelector('#answer1');
 
@@ -197,4 +199,38 @@ function clearScores() {
     scoresListEl.innerHTML = '';
 }
 
+
 // Event listeners
+
+// start timer and display first question when click start quiz
+startBtn.addEventListener('click', startQuiz);
+
+// check answers loop
+ansBtn.forEach(item => {
+    item.addEventListener('click', checkAnswer);
+});
+
+// add score
+submitScrBtn.addEventListener('click', addScore);
+
+// back button
+backBtn.addEventListener('click', function() {
+    highscoresEl.style.display = 'none';
+    introEl.style.display = 'block';
+    secondsLeft = 10;
+    timeEl.textContent = `Time: ${secondsLeft}s`;
+});
+
+// clear scores
+resetBtn.addEventListener('click', clearScores);
+
+// view/hide highscore button
+viewScrBtn.addEventListener('click', function(){
+    if (highscoresEl.style.display === 'none') {
+        highscoresEl.style.display = 'block';
+    } else if (highscoresEl.style.display === 'block') {
+        highscoresEl.style.display = 'none';
+    } else {
+        return alert('no scores to show.');
+    }
+});
