@@ -177,4 +177,24 @@ function addScore(event) {
     }
 }
 
+function storeScores() {
+    localStorage.setItem('scoreList', JSON.stringify(scoreList));
+}
+
+function displayScores() {
+    // get scores from localstorage
+    // parse the JSON string to an object
+    let storedScoreList = JSON.parse(localStorage.getItem('scoreList'));
+
+    // if scores were retrieved from localstorage, update the scores array to it
+    if (storedScoreList !== null) {
+        scoreList = storedScoreList
+    }
+}
+
+function clearScores() {
+    localStorage.clear();
+    scoresListEl.innerHTML = '';
+}
+
 // Event listeners
