@@ -162,12 +162,13 @@ function setTime() {
         timeEl.textContent = `Time: ${secondsLeft}s`
 
         if (secondsLeft === 0 || questionCount === questions.length) {
+            secondsLeft = 0; 
             clearInterval(timerInterval)
             questionsEl.style.display = 'none';
             finalEl.style.display = 'block';
             scoreEl.style.display = 'secondsLeft;'
         }
-    }, 1000)
+    }, 100)
 }
 
 // start quiz with timer and set up questions
